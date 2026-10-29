@@ -192,11 +192,11 @@
     // -------------------------------------------------------------
     // 1. Supabase 설정 (사용자 정보 교체 위치)
     // -------------------------------------------------------------
-    const SUPABASE_URL = "YOUR_SUPABASE_URL";
-    const SUPABASE_PUBLISHABLE_KEY = "YOUR_PUBLISHABLE_KEY";
+    const SUPABASE_URL = "https://efuybthjayvudypybraq.supabase.co";
+    const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_c-W6PpNUirVyyZ5h_G7YvA__RltfFrT";
 
     let supabaseClient = null;
-    if (SUPABASE_URL !== "YOUR_SUPABASE_URL" && SUPABASE_PUBLISHABLE_KEY !== "YOUR_PUBLISHABLE_KEY") {
+    if (SUPABASE_URL !== "https://efuybthjayvudypybraq.supabase.co" && SUPABASE_PUBLISHABLE_KEY !== "sb_publishable_c-W6PpNUirVyyZ5h_G7YvA__RltfFrT") {
       supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
     }
 
