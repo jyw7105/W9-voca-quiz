@@ -302,7 +302,7 @@
       }
       nextBtn.style.display = "block";
 
-      // Supabase 데이터 저장 (비동기, 실패해도 퀴즈 진행)
+      // Supabase 데이터 저장
       saveAnswerToSupabase({
         attempt_id: currentAttemptId,
         question_no: q.question_no,
@@ -317,4 +317,46 @@
     async function saveAnswerToSupabase(payload) {
       try {
         const { error } = await supabaseClient
-          .from("quiz_answers
+          .from("quiz_answers")
+          .insert([payload]);
+
+        if (error) {
+          console.error("데이터 저장 실패:", error);
+          setDbStatus("응답 저장 실패 (퀴즈는 계속 진행됩니다)", true);
+        } else {
+          setDbStatus("응답이 정상적으로 저장되었습니다.", false);
+        }
+      } catch (err) {
+        console.error("네트워크 오류:", err);
+        setDbStatus("네트워크 오류 발생 (퀴즈는 계속 진행됩니다)", true);
+      }
+    }
+
+    function setDbStatus(msg, isError) {
+      const statusEl = document.getElementById("db-status");
+      statusEl.textContent = msg;
+      statusEl.className = isError ? "db-status error" : "db-status";
+    }
+
+    // 8. 다음 문제 / 결과 페이지 이동
+    function nextQuestion() {
+      if (currentQuestionIndex < QUIZ_DATA.length - 1) {
+        currentQuestionIndex++;
+        renderQuestion();
+      } else {
+        showResult();
+      }
+    }
+
+    // 9. 결과 페이지 표시
+    function showResult() {
+      document.getElementById("quiz-view").style.display = "none";
+      document.getElementById("result-view").style.display = "block";
+      document.getElementById("final-score").textContent = `${score} / ${QUIZ_DATA.length} 점`;
+    }
+
+    // 페이지 로드 시 시작
+    window.onload = startQuiz;
+  </script>
+</body>
+</html>
