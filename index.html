@@ -188,9 +188,8 @@
     const SUPABASE_URL = "https://efuybthjayvudypybraq.supabase.co";
     const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_c-W6PpNUirVyyZ5h_G7YvA__RltfFrT";
 
-    let supabaseClient = null;
-    if (SUPABASE_URL !== "https://efuybthjayvudypybraq.supabase.co" && SUPABASE_PUBLISHABLE_KEY !== "sb_publishable_c-W6PpNUirVyyZ5h_G7YvA__RltfFrT") {
-      supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+    // 바로 클라이언트 생성
+    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
     }
 
     // 2. 퀴즈 문제 데이터
